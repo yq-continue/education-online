@@ -1,0 +1,45 @@
+###课程管理分页查询测试
+POST {{content_host}}/content/course/list?pageNo=2&pageSize=2
+Content-Type: application/json
+
+{
+  "auditStatus": "",
+  "courseName": "java",
+  "publishStatus":""
+}
+
+###新增课程界面分类展示
+GET {{content_host}}/content/course-category/tree-nodes
+
+
+### 添加课程
+POST {{content_host}}/content/course
+Content-Type: application/json
+
+{
+  "charge": "201001",
+  "price": 10,
+  "originalPrice":100,
+  "qq": "22333",
+  "wechat": "223344",
+  "phone": "13333333",
+  "validDays": 365,
+  "mt": "1-1",
+  "st": "1-1-1",
+  "name": "",
+  "pic": "fdsf",
+  "teachmode": "200002",
+  "users": "初级人员",
+  "tags": "tagstagstags",
+  "grade": "204001",
+  "description": "java网络编程高级java网络编程高级java网络编程高级"
+}
+
+###
+GET http://localhost:63040/content/course/1
+
+### 课程大纲查询
+GET http://localhost:63040/content/teachplan/117/tree-nodes
+
+
+
