@@ -12,6 +12,8 @@
         <module>education_online_base</module>
         <module>education_online_content</module>
         <module>../xuecheng-plus-system</module>
+        <module>education_online_gatway</module>
+        <module>education_online_media</module>
     </modules>
 
     <name>education_online_parent</name>

@@ -2,6 +2,7 @@ package com.education.content.controller;
 
 import com.education.content.model.po.CourseTeacher;
 import com.education.content.service.CourseTeacherService;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import java.util.List;
  */
 @RestController
 @Slf4j
+@Api(tags = {"教师信息编辑接口"})
 public class CourseTeacherController {
 
     @Autowired

@@ -7,6 +7,7 @@ import com.education.content.model.dto.CourseBaseInfoDto;
 import com.education.content.model.dto.QueryCourseParamsDto;
 import com.education.content.model.po.CourseBase;
 import com.education.content.service.CourseBaseInfoService;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @Slf4j
+@Api(tags = {"课程编辑接口"})
 public class CourseBaseInfoController {
 
     @Autowired

@@ -62,10 +62,11 @@
            <artifactId>junit</artifactId>
            <scope>test</scope>
        </dependency>
+
+       <!--nacos-config-->
        <dependency>
-           <groupId>junit</groupId>
-           <artifactId>junit</artifactId>
-           <scope>test</scope>
+           <groupId>com.alibaba.cloud</groupId>
+           <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
        </dependency>
 
    </dependencies>
