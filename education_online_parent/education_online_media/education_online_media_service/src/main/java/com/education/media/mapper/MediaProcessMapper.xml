@@ -18,5 +18,13 @@
     <sql id="Base_Column_List">
         id, file_id, filename, bucket, status, create_date, finish_date, url
     </sql>
+    <update id="startTask">
+        update media_process m set m.status='4' where (m.status='1' or m.status='3') and m.fail_count &lt; 3 and m.id=#{id}
+    </update>
+
+    <!--    @Param("shardTotal") int shardTotal,@Param("shardIndex") int shardIndex,@Param("count") int count-->
+    <select id="selectListByShardIndex" resultType="com.education.media.model.po.MediaProcess">
+        SELECT * FROM `media_process` WHERE id % #{shardTotal} = #{shardIndex} AND (STATUS = 1 OR STATUS = 3) AND fail_count &lt; 3 LIMIT #{count};
+    </select>
 
 </mapper>

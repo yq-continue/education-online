@@ -5,6 +5,7 @@ import com.education.base.exception.EducationException;
 import com.education.content.mapper.CourseBaseMapper;
 import com.education.content.mapper.TeachplanMapper;
 import com.education.content.mapper.TeachplanMediaMapper;
+import com.education.content.model.dto.BindTeachplanMediaDto;
 import com.education.content.model.dto.SaveTeachplanDto;
 import com.education.content.model.dto.TeachplanDto;
 import com.education.content.model.po.CourseBase;
@@ -124,5 +125,30 @@ public class TeachPlanServiceImpl implements TeachPlanService {
             teachplanMapper.updateById(teachplan);
             teachplanMapper.updateById(pre);
         }
+    }
+
+    @Override
+    @Transactional
+    public void associationMedia(BindTeachplanMediaDto bindTeachplanMediaDto) {
+        Teachplan teachplan = teachplanMapper.selectById(bindTeachplanMediaDto.getTeachplanId());
+        //删除表中对应的绑定信息
+        LambdaQueryWrapper<TeachplanMedia> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(TeachplanMedia::getTeachplanId,bindTeachplanMediaDto.getTeachplanId());
+        teachplanMediaMapper.delete(wrapper);
+        //添加新的绑定信息
+        TeachplanMedia teachplanMedia = new TeachplanMedia();
+        BeanUtils.copyProperties(bindTeachplanMediaDto,teachplanMedia);
+        teachplanMedia.setMediaFilename(bindTeachplanMediaDto.getFileName());
+        teachplanMedia.setCourseId(teachplan.getCourseId());
+        teachplanMedia.setCreateDate(LocalDateTime.now());
+        teachplanMediaMapper.insert(teachplanMedia);
+    }
+
+    @Override
+    public void unbindMedia(Long teachPlanId, String mediaId) {
+        LambdaQueryWrapper<TeachplanMedia> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(teachPlanId != null,TeachplanMedia::getTeachplanId,teachPlanId);
+        wrapper.eq(mediaId != null,TeachplanMedia::getMediaId,mediaId);
+        teachplanMediaMapper.delete(wrapper);
     }
 }

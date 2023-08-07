@@ -1,5 +1,6 @@
 package com.education.content.service;
 
+import com.education.content.model.dto.BindTeachplanMediaDto;
 import com.education.content.model.dto.SaveTeachplanDto;
 import com.education.content.model.dto.TeachplanDto;
 
@@ -35,5 +36,19 @@ public interface TeachPlanService {
      * @param teachPlanId 课程计划 id
      */
     public void move(String type,Long teachPlanId);
+
+    /**
+     * 绑定课程计划与媒资信息
+     * @param bindTeachplanMediaDto
+     * @return
+     */
+    public void associationMedia(BindTeachplanMediaDto bindTeachplanMediaDto);
+
+    /**
+     * 解绑媒体资源
+     * @param teachPlanId 课程计划 id
+     * @param mediaId 媒体资源 id
+     */
+    public void unbindMedia(Long teachPlanId, String mediaId);
 
 }

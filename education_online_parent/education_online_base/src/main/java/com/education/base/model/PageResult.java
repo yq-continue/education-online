@@ -1,6 +1,7 @@
 package com.education.base.model;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.io.Serializable;
@@ -12,6 +13,7 @@ import java.util.List;
  */
 @Data
 @ToString
+@NoArgsConstructor
 public class PageResult<T> implements Serializable {
 
     // 数据列表
