@@ -1,0 +1,13 @@
+### 上传文件
+POST {{media_host}}/media/upload/coursefile
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="filedata"; filename="1.jpg"
+Content-Type: application/octet-stream
+
+< d:/img/1.jpg
+
+### 课程计划解除视频绑定
+DELETE {{media_host}}/media/teachplan/association/media/323/7b20dde5922afc0c7001f5cd1da5c451
+
