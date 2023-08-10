@@ -135,6 +135,10 @@ public class CourseBaseInfoServiceImpl implements CourseBaseInfoService {
         //将数据封装到 CourseBaseInfoDto 中
         BeanUtils.copyProperties(courseBase,courseBaseInfoDto);
         BeanUtils.copyProperties(courseMarket,courseBaseInfoDto);
+        String mtName = courseCategoryMapper.getName(courseBase.getMt());
+        String stName = courseCategoryMapper.getName(courseBase.getSt());
+        courseBaseInfoDto.setMtName(mtName);
+        courseBaseInfoDto.setStName(stName);
         //返回数据
         return courseBaseInfoDto;
     }

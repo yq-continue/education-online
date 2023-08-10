@@ -59,7 +59,6 @@ public class CourseBase implements Serializable {
      * 小分类
      */
     private String st;
-
     /**
      * 课程等级
      */

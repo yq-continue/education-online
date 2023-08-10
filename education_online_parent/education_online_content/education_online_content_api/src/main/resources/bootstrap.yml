@@ -32,6 +32,12 @@ spring:
           - data-id: logging-${spring.profiles.active}.yml
             group: education-online-common
             refresh: true
+          - data-id: freemarker-config-${spring.profiles.active}.yaml
+            group: education-online
+            refresh: true
+          - data-id: feign-${spring.profiles.active}.yaml
+            group: education-online-common
+            refresh: true
 
 
 #  datasource:
