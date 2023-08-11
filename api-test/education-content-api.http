@@ -41,5 +41,9 @@ GET http://localhost:63040/content/course/1
 ### 课程大纲查询
 GET http://localhost:63040/content/teachplan/117/tree-nodes
 
+###
+GET http://localhost:63040/content/course/2
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsieHVlY2hlbmctcGx1cyJdLCJ1c2VyX25hbWUiOiJ6aGFuZ3NhbiIsInNjb3BlIjpbImFsbCJdLCJleHAiOjE2OTE2NjI5MDUsImF1dGhvcml0aWVzIjpbInAxIl0sImp0aSI6ImE2MmEwMjZlLTBmZWQtNGQwNi1iNDY1LTA4NjcyYzA1MzU4YSIsImNsaWVudF9pZCI6IlhjV2ViQXBwIn0.zUq64ZyatWWO6YoiQfq5iPkGo2HqR_Rdboe4HhG3LCg
+
 
 

@@ -23,6 +23,7 @@ public class XcUser implements Serializable {
 
     private String username;
 
+    //用户密码
     private String password;
 
     private String salt;

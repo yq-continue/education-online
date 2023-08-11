@@ -16,6 +16,7 @@
         <module>education_online_media</module>
         <module>education_online_SDK</module>
         <module>education_online_auth</module>
+        <module>education_online_checkcode</module>
     </modules>
 
     <name>education_online_parent</name>
