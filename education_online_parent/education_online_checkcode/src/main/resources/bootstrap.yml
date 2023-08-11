@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: checkcode  # checkcode-dev.yaml
+  cloud:
+    nacos:
+      server-addr: 192.168.1.200:8848
+      discovery:
+        namespace: dev
+        group: education-online
+      config:
+        namespace: dev
+        group: education-online
+        file-extension: yaml
+        refresh-enabled: true
+        shared-configs:
+          - data-id: swagger-${spring.profiles.active}.yaml
+            group: education-online-common
+            refresh: true
+          - data-id: logging-${spring.profiles.active}.yaml
+            group: education-online-common
+            refresh: true
+          - data-id: redis-${spring.profiles.active}.yaml
+            group: education-online-common
+            refresh: true
+
+  profiles:
+    active: dev
