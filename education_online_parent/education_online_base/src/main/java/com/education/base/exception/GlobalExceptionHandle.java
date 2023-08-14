@@ -47,6 +47,11 @@ public class GlobalExceptionHandle {
 
         log.error("【系统异常】{}",e.getMessage());
 
+        if (e.getMessage().equals("不允许访问")){
+            return new RestErrorResponse("无权限操作");
+        }
+
+
         return new RestErrorResponse(CommonError.UNKOWN_ERROR.getErrMessage());
 
     }

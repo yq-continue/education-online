@@ -1,6 +1,7 @@
 package com.education.content.service;
 
 import com.education.content.model.dto.CoursePreviewDto;
+import com.education.content.model.po.CoursePublish;
 
 import java.io.File;
 
@@ -44,6 +45,10 @@ public interface CoursePublishService {
      * @param file  文件
      */
     public void  uploadCourseHtml(Long courseId,File file);
+
+
+    public CoursePublish getCoursePublish(Long courseId);
+
 
 
 }
