@@ -46,7 +46,11 @@ public interface CoursePublishService {
      */
     public void  uploadCourseHtml(Long courseId,File file);
 
-
+    /**
+     * 根据 id 查询课程发布信息
+     * @param courseId
+     * @return
+     */
     public CoursePublish getCoursePublish(Long courseId);
 
 

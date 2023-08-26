@@ -3,6 +3,7 @@ package com.education.learning.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.education.learning.model.po.XcChooseCourse;
+import org.apache.ibatis.annotations.Mapper;
 
 /**
  * <p>
@@ -11,6 +12,7 @@ import com.education.learning.model.po.XcChooseCourse;
  *
  * @author itcast
  */
+@Mapper
 public interface XcChooseCourseMapper extends BaseMapper<XcChooseCourse> {
 
 }

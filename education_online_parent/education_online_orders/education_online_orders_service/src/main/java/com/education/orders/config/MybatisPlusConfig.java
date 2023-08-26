@@ -1,4 +1,4 @@
-package com.education.learning.config;
+package com.education.orders.config;
 
 import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
  * </p>
  */
 @Configuration
-@MapperScan("com.education.learning.mapper")
+@MapperScan("com.education.orders.mapper")
 public class MybatisPlusConfig {
 	/**
 	 * 新的分页插件
