@@ -8,7 +8,6 @@ import com.education.ucenter.model.dto.XcUserExt;
 import com.education.ucenter.model.po.XcUser;
 import com.education.ucenter.service.AuthService;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -33,18 +32,18 @@ public class PasswordAuthServiceImpl implements AuthService {
 
     @Override
     public XcUserExt execute(AuthParamsDto authParamsDto) {
-        //对比验证码
-        String checkcode = authParamsDto.getCheckcode();
-        String checkcodekey = authParamsDto.getCheckcodekey();
-        if(StringUtils.isBlank(checkcodekey) || StringUtils.isBlank(checkcode)){
-            throw new RuntimeException("验证码为空");
-        }
-
-        Boolean verify = checkCodeClient.verify(checkcodekey, checkcode);
-        if (!verify || verify == null){
-            log.info("验证码错误");
-            throw new RuntimeException("验证码错误");
-        }
+        //对比验证码 todo:将验证码匹配暂时注掉方便测试，项目完成后打开
+//        String checkcode = authParamsDto.getCheckcode();
+//        String checkcodekey = authParamsDto.getCheckcodekey();
+//        if(StringUtils.isBlank(checkcodekey) || StringUtils.isBlank(checkcode)){
+//            throw new RuntimeException("验证码为空");
+//        }
+//
+//        Boolean verify = checkCodeClient.verify(checkcodekey, checkcode);
+//        if (!verify || verify == null){
+//            log.info("验证码错误");
+//            throw new RuntimeException("验证码错误");
+//        }
         // 查询用户是是否存在
         String userName = authParamsDto.getUsername();
         LambdaQueryWrapper<XcUser> wrapper = new LambdaQueryWrapper<>();

@@ -2,6 +2,7 @@ package com.education.orders.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.education.orders.model.po.XcOrdersGoods;
+import org.apache.ibatis.annotations.Mapper;
 
 /**
  * <p>
@@ -10,6 +11,7 @@ import com.education.orders.model.po.XcOrdersGoods;
  *
  * @author itcast
  */
+@Mapper
 public interface XcOrdersGoodsMapper extends BaseMapper<XcOrdersGoods> {
 
 }
