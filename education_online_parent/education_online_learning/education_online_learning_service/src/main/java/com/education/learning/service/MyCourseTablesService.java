@@ -1,7 +1,10 @@
 package com.education.learning.service;
 
+import com.education.base.model.PageResult;
+import com.education.learning.model.dto.MyCourseTableParams;
 import com.education.learning.model.dto.XcChooseCourseDto;
 import com.education.learning.model.dto.XcCourseTablesDto;
+import com.education.learning.model.po.XcCourseTables;
 
 /**
  * @author yang
@@ -30,4 +33,11 @@ public interface MyCourseTablesService {
      * @return
      */
     public boolean saveChooseCourseSuccess(String chooseCourseId);
+
+    /**
+     * 获取课程表信息
+     * @param params
+     * @return
+     */
+    public PageResult<XcCourseTables> getCourseTable(MyCourseTableParams params);
 }

@@ -1,11 +1,14 @@
 package com.education.learning.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.education.base.exception.EducationException;
+import com.education.base.model.PageResult;
 import com.education.content.model.po.CoursePublish;
 import com.education.learning.feignclient.ContentServiceClient;
 import com.education.learning.mapper.XcChooseCourseMapper;
 import com.education.learning.mapper.XcCourseTablesMapper;
+import com.education.learning.model.dto.MyCourseTableParams;
 import com.education.learning.model.dto.XcChooseCourseDto;
 import com.education.learning.model.dto.XcCourseTablesDto;
 import com.education.learning.model.po.XcChooseCourse;
@@ -120,6 +123,22 @@ public class MyCourseTablesServiceImpl implements MyCourseTablesService {
         }
 
         return false;
+    }
+
+    @Override
+    public PageResult<XcCourseTables> getCourseTable(MyCourseTableParams params) {
+        LambdaQueryWrapper<XcCourseTables> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(XcCourseTables::getUserId,params.getUserId());
+        //按拼装查询条件
+        wrapper.orderBy(params.getSortType() != "",true,XcCourseTables::getCreateDate);
+        wrapper.eq(params.getCourseType() != "",XcCourseTables::getCourseType,params.getCourseType());
+        wrapper.lt("2".equals(params.getExpiresType()),XcCourseTables::getValidtimeEnd,LocalDateTime.now());
+        wrapper.gt("1".equals(params.getExpiresType()),XcCourseTables::getValidtimeEnd,LocalDateTime.now());
+        Page<XcCourseTables> page = new Page<>(params.getPageNo(),params.getPageSize());
+        courseTablesMapper.selectPage(page,wrapper);
+        PageResult<XcCourseTables> xcCourseTablesPageResult =
+                new PageResult<>(page.getRecords(), page.getTotal(), params.getPageNo(), params.getPageSize());
+        return xcCourseTablesPageResult;
     }
 
     //添加免费课程至选课表

@@ -3,6 +3,7 @@ package com.education.content.controller;
 import com.education.content.model.dto.BindTeachplanMediaDto;
 import com.education.content.model.dto.SaveTeachplanDto;
 import com.education.content.model.dto.TeachplanDto;
+import com.education.content.model.po.Teachplan;
 import com.education.content.service.TeachPlanService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -61,4 +62,12 @@ public class TeachplanController {
     public void unbindMedia(@PathVariable("teachPlanId")Long teachPlanId, @PathVariable("mediaId")String mediaId){
         teachPlanService.unbindMedia(teachPlanId,mediaId);
     }
+
+    @ApiOperation("根据课程计划 id 查询课程计划")
+    @GetMapping("/teachplan/{teachplan}")
+    public Teachplan getCourseplan(@PathVariable("teachplan")Long teachplanId){
+        Teachplan teachplan = teachPlanService.queryCourseplan(teachplanId);
+        return teachplan;
+    }
+
 }

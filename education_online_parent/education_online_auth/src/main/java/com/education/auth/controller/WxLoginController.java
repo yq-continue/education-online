@@ -28,5 +28,7 @@ public class WxLoginController {
         String username = xcUser.getUsername();
         return "redirect:http://www.51xuecheng.cn/sign.html?username="+username+"&authType=wechat";
     }
+
+
 }
 

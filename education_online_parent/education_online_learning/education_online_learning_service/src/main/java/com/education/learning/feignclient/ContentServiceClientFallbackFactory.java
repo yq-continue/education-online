@@ -2,6 +2,7 @@ package com.education.learning.feignclient;
 
 
 import com.education.content.model.po.CoursePublish;
+import com.education.content.model.po.Teachplan;
 import feign.hystrix.FallbackFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -22,6 +23,12 @@ public class ContentServiceClientFallbackFactory implements FallbackFactory<Cont
             @Override
             public CoursePublish getCoursepublish(Long courseId) {
                 log.error("调用内容管理服务发生熔断:{}", throwable.toString(),throwable);
+                return null;
+            }
+
+            @Override
+            public Teachplan getCourseplan(Long teachplanId) {
+                log.error("调用内容管理模块查询课程计划信息发生熔断，课程计划信息id为{}",teachplanId);
                 return null;
             }
         };

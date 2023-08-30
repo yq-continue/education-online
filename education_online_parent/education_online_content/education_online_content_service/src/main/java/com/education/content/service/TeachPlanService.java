@@ -3,6 +3,8 @@ package com.education.content.service;
 import com.education.content.model.dto.BindTeachplanMediaDto;
 import com.education.content.model.dto.SaveTeachplanDto;
 import com.education.content.model.dto.TeachplanDto;
+import com.education.content.model.po.Teachplan;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -50,5 +52,12 @@ public interface TeachPlanService {
      * @param mediaId 媒体资源 id
      */
     public void unbindMedia(Long teachPlanId, String mediaId);
+
+    /**
+     * 根据课程计划 id 查询课程计划相关信息
+     * @param teachplanId
+     * @return
+     */
+    public Teachplan queryCourseplan(@PathVariable("teachplan")Long teachplanId);
 
 }

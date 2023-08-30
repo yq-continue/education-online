@@ -151,4 +151,10 @@ public class TeachPlanServiceImpl implements TeachPlanService {
         wrapper.eq(mediaId != null,TeachplanMedia::getMediaId,mediaId);
         teachplanMediaMapper.delete(wrapper);
     }
+
+    @Override
+    public Teachplan queryCourseplan(Long teachplanId) {
+        Teachplan teachplan = teachplanMapper.selectById(teachplanId);
+        return teachplan;
+    }
 }
