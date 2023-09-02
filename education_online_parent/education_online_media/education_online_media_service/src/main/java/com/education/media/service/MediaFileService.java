@@ -96,6 +96,11 @@ public interface MediaFileService {
      */
     public MediaFiles getMediaFileById(String mediaId);
 
+    /**
+     * 移除媒体文件
+     */
+    public void removeMediaFile(String mediaId);
+
 
 
 }

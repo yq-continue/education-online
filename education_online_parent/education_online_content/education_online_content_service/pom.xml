@@ -101,7 +101,7 @@
            <groupId>io.github.openfeign</groupId>
            <artifactId>feign-httpclient</artifactId>
        </dependency>
-       <!--feign支持Multipart格式传参-->
+       <!--feign支持 Multipart 格式传参-->
        <dependency>
            <groupId>io.github.openfeign.form</groupId>
            <artifactId>feign-form</artifactId>

@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.education.base.exception.EducationException;
 import com.education.base.model.PageParams;
 import com.education.base.model.PageResult;
+import com.education.media.feiclient.ContentServiceClient;
 import com.education.media.mapper.MediaFilesMapper;
 import com.education.media.mapper.MediaProcessMapper;
 import com.education.media.model.dto.QueryMediaParamsDto;
@@ -48,6 +49,9 @@ public class MediaFileServiceImpl implements MediaFileService {
 
     @Autowired
     private MinioClient minioClient;
+
+    @Autowired
+    private ContentServiceClient contentServiceClient;
 
     @Value("${minio.bucket.files}")
     private String bucketOfFiles;
@@ -279,6 +283,26 @@ public class MediaFileServiceImpl implements MediaFileService {
         return mediaFile;
     }
 
+    @Override
+    public void removeMediaFile(String mediaId) {
+        //查询 mediaFile 表中是否存在此媒体文件
+        MediaFiles mediaFiles = mediaFilesMapper.selectById(mediaId);
+        if (mediaFiles == null){
+            EducationException.cast("此文件不存在");
+        }
+        //查询此媒体文件是否存在绑定信息  true:绑定  false：没有绑定
+        boolean bind = contentServiceClient.isBind(mediaId);
+        if (bind){
+            EducationException.cast("此媒体文件绑定了相关课程，请先解绑课程后再次尝试");
+        }
+        //删除文件
+        String bucket = mediaFiles.getBucket();
+        String filePath = mediaFiles.getFilePath();
+        deleteBlock(bucket,filePath);
+        //删除对应记录
+        mediaFilesMapper.deleteById(mediaId);
+    }
+
     /**
      * 获取年月日
      *
@@ -400,7 +424,7 @@ public class MediaFileServiceImpl implements MediaFileService {
     }
 
     /**
-     * 删除分块
+     * 删除分块  将 minio 中的文件删除
      * @param bucket
      * @param objectName
      */

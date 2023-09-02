@@ -157,4 +157,15 @@ public class TeachPlanServiceImpl implements TeachPlanService {
         Teachplan teachplan = teachplanMapper.selectById(teachplanId);
         return teachplan;
     }
+
+    @Override
+    public boolean isBinding(String mediaId) {
+        LambdaQueryWrapper<TeachplanMedia> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(mediaId != null,TeachplanMedia::getMediaId,mediaId);
+        TeachplanMedia teachplanMedia = teachplanMediaMapper.selectOne(wrapper);
+        if (teachplanMedia != null){
+            return true;
+        }
+        return false;
+    }
 }

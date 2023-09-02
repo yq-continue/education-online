@@ -1,6 +1,5 @@
 package com.education.media.controller;
 
-
 import com.education.base.model.PageParams;
 import com.education.base.model.PageResult;
 import com.education.media.model.dto.QueryMediaParamsDto;
@@ -10,6 +9,7 @@ import com.education.media.model.po.MediaFiles;
 import com.education.media.service.MediaFileService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -26,6 +26,7 @@ import java.io.IOException;
  */
 @Api(value = "媒资文件管理接口", tags = "媒资文件管理接口")
 @RestController
+@Slf4j
 public class MediaFilesController {
 
 
@@ -65,7 +66,14 @@ public class MediaFilesController {
         return uploadFileResultDto;
     }
 
-
+    /**
+     * 移除媒体文件
+     * @param mediaId
+     */
+    @DeleteMapping("/{mediaId}")
+    public void removeMediaFile(@PathVariable("mediaId") String mediaId){
+        mediaFileService.removeMediaFile(mediaId);
+    }
 
 
 }

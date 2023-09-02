@@ -20,6 +20,16 @@
     </properties>
 
     <dependencies>
+        <!--openfeign 远程调用-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.github.openfeign</groupId>
+            <artifactId>feign-httpclient</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>com.education</groupId>
             <artifactId>education_online_media_model</artifactId>

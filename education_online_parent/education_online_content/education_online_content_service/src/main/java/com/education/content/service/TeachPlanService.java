@@ -60,4 +60,10 @@ public interface TeachPlanService {
      */
     public Teachplan queryCourseplan(@PathVariable("teachplan")Long teachplanId);
 
+    /**
+     * 查询媒体资源是否绑定课程计划
+     * @return true:绑定了课程计划   false：没有绑定课程计划
+     */
+    public boolean isBinding(String mediaId);
+
 }

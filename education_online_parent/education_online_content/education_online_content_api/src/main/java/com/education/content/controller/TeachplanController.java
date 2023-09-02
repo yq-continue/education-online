@@ -70,4 +70,11 @@ public class TeachplanController {
         return teachplan;
     }
 
+    @ApiOperation("查询对应的媒体是否绑定了课程计划")
+    @GetMapping("/teachplan/media/{mediaId}")
+    public boolean isBind(@PathVariable("mediaId")String mediaId){
+        boolean binding = teachPlanService.isBinding(mediaId);
+        return binding;
+    }
+
 }
