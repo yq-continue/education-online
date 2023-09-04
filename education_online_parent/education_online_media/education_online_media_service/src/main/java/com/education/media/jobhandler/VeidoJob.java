@@ -73,7 +73,7 @@ public class VeidoJob {
                     Long taskId = mediaProcess.getId();
                     //文件id就是md5 值
                     String fileId = mediaProcess.getFileId();
-                    //开启任务
+                    //开启任务  修改数据库状态为 4 防止任务被多个执行器执行执行
                     boolean b = mediaFileProcessService.startTask(taskId);
                     if (!b) {
                         log.debug("抢占任务失败,任务id:{}", taskId);

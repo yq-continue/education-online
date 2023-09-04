@@ -140,22 +140,23 @@ public class MediaFileServiceImpl implements MediaFileService {
 
     @Override
     public RestResponse<Boolean> checkChunk(String fileMd5, int chunkIndex) {
-        //拼装 object
-        String object = fileMd5.substring(0, 1) + "/" + fileMd5.substring(1, 2) + "/"
-                + fileMd5 + "/chunk/" + chunkIndex;
-
-        //查询 minio 中是否存在此文件
-        FilterInputStream inputStream = null;
-        try {
-            GetObjectArgs getObjectArgs = GetObjectArgs.builder()
-                    .bucket(bucketOfVedio).object(object).build();
-            inputStream = minioClient.getObject(getObjectArgs);
-            if (inputStream != null){
-                return RestResponse.success(true);
-            }
-        } catch (Exception e) {
-            log.debug("传输视频检查分块文件错误");
-        }
+//        //拼装 object
+//        String object = fileMd5.substring(0, 1) + "/" + fileMd5.substring(1, 2) + "/"
+//                + fileMd5 + "/chunk/" + chunkIndex;
+//
+//        //查询 minio 中是否存在此文件
+//        FilterInputStream inputStream = null;
+//        try {
+//            GetObjectArgs getObjectArgs = GetObjectArgs.builder()
+//                    .bucket(bucketOfVedio).object(object).build();
+//            inputStream = minioClient.getObject(getObjectArgs);
+//            if (inputStream != null){
+//                return RestResponse.success(true);
+//            }
+//        } catch (Exception e) {
+//            log.debug("传输视频检查分块文件错误，错误信息:{}",e.getMessage());
+//        }
+//        return RestResponse.success(false);
         return RestResponse.success(false);
     }
 

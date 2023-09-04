@@ -50,6 +50,10 @@ public class MediaFileProcessServiceImpl implements MediaFileProcessService {
             //更新MediaProcess表的状态
             mediaProcess.setStatus("3");
             mediaProcess.setFailCount(mediaProcess.getFailCount()+1);//失败次数加1
+            //数据库 错误信息最多 1024 个字节
+            if (errorMsg.length() > 1024){
+                errorMsg = errorMsg.substring(0,1023);
+            }
             mediaProcess.setErrormsg(errorMsg);
             mediaProcessMapper.updateById(mediaProcess);
             return;

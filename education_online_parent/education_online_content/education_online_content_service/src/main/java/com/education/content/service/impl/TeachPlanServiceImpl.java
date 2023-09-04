@@ -158,12 +158,17 @@ public class TeachPlanServiceImpl implements TeachPlanService {
         return teachplan;
     }
 
+    /**
+     * 查询课程计划是否绑定了媒资计划
+     * @param mediaId  媒体资源 id
+     * @return true 媒体资源绑定了课程计划  false 媒体资源没有绑定课程计划
+     */
     @Override
     public boolean isBinding(String mediaId) {
         LambdaQueryWrapper<TeachplanMedia> wrapper = new LambdaQueryWrapper<>();
         wrapper.eq(mediaId != null,TeachplanMedia::getMediaId,mediaId);
-        TeachplanMedia teachplanMedia = teachplanMediaMapper.selectOne(wrapper);
-        if (teachplanMedia != null){
+        List<TeachplanMedia> teachplanMedia = teachplanMediaMapper.selectList(wrapper);
+        if (teachplanMedia.size() > 0){
             return true;
         }
         return false;

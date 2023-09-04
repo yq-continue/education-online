@@ -6,10 +6,12 @@ import com.education.media.model.dto.QueryMediaParamsDto;
 import com.education.media.model.dto.UploadFileParamsDto;
 import com.education.media.model.dto.UploadFileResultDto;
 import com.education.media.model.po.MediaFiles;
+import com.education.media.model.po.RestResponse;
 import com.education.media.service.MediaFileService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -73,6 +75,22 @@ public class MediaFilesController {
     @DeleteMapping("/{mediaId}")
     public void removeMediaFile(@PathVariable("mediaId") String mediaId){
         mediaFileService.removeMediaFile(mediaId);
+    }
+
+    @ApiOperation("预览文件")
+    @GetMapping("/preview/{mediaId}")
+    public RestResponse<String> getPlayUrlByMediaId(@PathVariable String mediaId) {
+        MediaFiles mediaFiles = mediaFileService.getMediaFileById(mediaId);
+        if (mediaFiles == null){
+            return RestResponse.validfail("找不到视频");
+        }
+        //取出视频播放地址
+        String url = mediaFiles.getUrl();
+        // 为 null 时说明 avi 文件暂时没处理完成
+        if (StringUtils.isEmpty(url)) {
+            return RestResponse.validfail("该视频正在处理中");
+        }
+        return RestResponse.success(mediaFiles.getUrl());
     }
 
 

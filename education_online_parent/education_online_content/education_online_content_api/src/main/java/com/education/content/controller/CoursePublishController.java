@@ -101,5 +101,11 @@ public class CoursePublishController {
         return coursePreviewInfo;
     }
 
+    @ApiOperation("课程下架接口")
+    @GetMapping("/courseoffline/{courseId}")
+    public void courseOffLine(@PathVariable("courseId")Long courseId){
+        coursePublishService.courseOffLine(courseId);
+    }
+
 
 }

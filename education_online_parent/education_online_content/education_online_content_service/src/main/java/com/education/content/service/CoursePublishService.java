@@ -53,6 +53,12 @@ public interface CoursePublishService {
      */
     public CoursePublish getCoursePublish(Long courseId);
 
+    /**
+     * 课程下架接口
+     * @param courseId 课程 id
+     */
+    public void courseOffLine(Long courseId);
+
 
 
 }

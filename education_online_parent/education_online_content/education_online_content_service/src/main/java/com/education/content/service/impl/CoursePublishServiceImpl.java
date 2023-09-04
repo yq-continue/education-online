@@ -167,7 +167,7 @@ public class CoursePublishServiceImpl implements CoursePublishService {
         if (!coursePublishPre.getCompanyId().equals(companyId)) {
             EducationException.cast("不允许提交其它机构的课程。");
         }
-        //课程审核状态
+        //课程审核状态  status
         String auditStatus = coursePublishPre.getStatus();
         //审核通过方可发布
         if (!"202004".equals(auditStatus)) {
@@ -243,6 +243,21 @@ public class CoursePublishServiceImpl implements CoursePublishService {
     public CoursePublish getCoursePublish(Long courseId){
         CoursePublish coursePublish = coursePublishMapper.selectById(courseId);
         return coursePublish ;
+    }
+
+    @Override
+    public void courseOffLine(Long courseId) {
+        CourseBase courseBase = courseBaseMapper.selectById(courseId);
+        if (courseBase == null){
+            EducationException.cast("课程不存在，下架失败");
+        }
+        //更新课程发布状态为下线
+        courseBase.setStatus("203003");
+        //更新审核状态为未提交审核
+        courseBase.setAuditStatus("202002");
+        //更新表
+        courseBase.setChangeDate(LocalDateTime.now());
+        courseBaseMapper.updateById(courseBase);
     }
 
 
